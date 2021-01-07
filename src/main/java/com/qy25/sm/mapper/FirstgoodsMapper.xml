@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy25.sm.mapper.FirstgoodsMapper">
+  <resultMap id="BaseResultMap" type="com.qy25.sm.entity.goods.Firstgoods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="brand" jdbcType="VARCHAR" property="brand" />
+    <result column="catagory" jdbcType="VARCHAR" property="catagory" />
+    <result column="model" jdbcType="VARCHAR" property="model" />
+    <result column="color" jdbcType="VARCHAR" property="color" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+    <result column="purchase_type" jdbcType="VARCHAR" property="purchaseType" />
+    <result column="is_distribution" jdbcType="TINYINT" property="isDistribution" />
+    <result column="is_spare" jdbcType="TINYINT" property="isSpare" />
+    <result column="goods_code" jdbcType="VARCHAR" property="goodsCode" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, name, brand, catagory, model, color, add_time, creator_id, update_time, update_id, 
+    purchase_type, is_distribution, is_spare, goods_code
+  </sql>
+  <select id="selectByExample" parameterType="com.qy25.sm.entity.goods.FirstgoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_first_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_first_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_first_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qy25.sm.entity.goods.FirstgoodsExample">
+    delete from t_first_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qy25.sm.entity.goods.Firstgoods">
+    insert into t_first_goods (id, name, brand, 
+      catagory, model, color, 
+      add_time, creator_id, update_time, 
+      update_id, purchase_type, is_distribution, 
+      is_spare, goods_code)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, 
+      #{catagory,jdbcType=VARCHAR}, #{model,jdbcType=VARCHAR}, #{color,jdbcType=VARCHAR}, 
+      #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT}, #{purchaseType,jdbcType=VARCHAR}, #{isDistribution,jdbcType=TINYINT}, 
+      #{isSpare,jdbcType=TINYINT}, #{goodsCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qy25.sm.entity.goods.Firstgoods">
+    insert into t_first_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="brand != null">
+        brand,
+      </if>
+      <if test="catagory != null">
+        catagory,
+      </if>
+      <if test="model != null">
+        model,
+      </if>
+      <if test="color != null">
+        color,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+      <if test="purchaseType != null">
+        purchase_type,
+      </if>
+      <if test="isDistribution != null">
+        is_distribution,
+      </if>
+      <if test="isSpare != null">
+        is_spare,
+      </if>
+      <if test="goodsCode != null">
+        goods_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="catagory != null">
+        #{catagory,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseType != null">
+        #{purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDistribution != null">
+        #{isDistribution,jdbcType=TINYINT},
+      </if>
+      <if test="isSpare != null">
+        #{isSpare,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCode != null">
+        #{goodsCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qy25.sm.entity.goods.FirstgoodsExample" resultType="java.lang.Long">
+    select count(*) from t_first_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_first_goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.brand != null">
+        brand = #{record.brand,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catagory != null">
+        catagory = #{record.catagory,jdbcType=VARCHAR},
+      </if>
+      <if test="record.model != null">
+        model = #{record.model,jdbcType=VARCHAR},
+      </if>
+      <if test="record.color != null">
+        color = #{record.color,jdbcType=VARCHAR},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null">
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+      <if test="record.purchaseType != null">
+        purchase_type = #{record.purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isDistribution != null">
+        is_distribution = #{record.isDistribution,jdbcType=TINYINT},
+      </if>
+      <if test="record.isSpare != null">
+        is_spare = #{record.isSpare,jdbcType=TINYINT},
+      </if>
+      <if test="record.goodsCode != null">
+        goods_code = #{record.goodsCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_first_goods
+    set id = #{record.id,jdbcType=BIGINT},
+      name = #{record.name,jdbcType=VARCHAR},
+      brand = #{record.brand,jdbcType=VARCHAR},
+      catagory = #{record.catagory,jdbcType=VARCHAR},
+      model = #{record.model,jdbcType=VARCHAR},
+      color = #{record.color,jdbcType=VARCHAR},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT},
+      purchase_type = #{record.purchaseType,jdbcType=VARCHAR},
+      is_distribution = #{record.isDistribution,jdbcType=TINYINT},
+      is_spare = #{record.isSpare,jdbcType=TINYINT},
+      goods_code = #{record.goodsCode,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qy25.sm.entity.goods.Firstgoods">
+    update t_first_goods
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="brand != null">
+        brand = #{brand,jdbcType=VARCHAR},
+      </if>
+      <if test="catagory != null">
+        catagory = #{catagory,jdbcType=VARCHAR},
+      </if>
+      <if test="model != null">
+        model = #{model,jdbcType=VARCHAR},
+      </if>
+      <if test="color != null">
+        color = #{color,jdbcType=VARCHAR},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+      <if test="purchaseType != null">
+        purchase_type = #{purchaseType,jdbcType=VARCHAR},
+      </if>
+      <if test="isDistribution != null">
+        is_distribution = #{isDistribution,jdbcType=TINYINT},
+      </if>
+      <if test="isSpare != null">
+        is_spare = #{isSpare,jdbcType=TINYINT},
+      </if>
+      <if test="goodsCode != null">
+        goods_code = #{goodsCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qy25.sm.entity.goods.Firstgoods">
+    update t_first_goods
+    set name = #{name,jdbcType=VARCHAR},
+      brand = #{brand,jdbcType=VARCHAR},
+      catagory = #{catagory,jdbcType=VARCHAR},
+      model = #{model,jdbcType=VARCHAR},
+      color = #{color,jdbcType=VARCHAR},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      purchase_type = #{purchaseType,jdbcType=VARCHAR},
+      is_distribution = #{isDistribution,jdbcType=TINYINT},
+      is_spare = #{isSpare,jdbcType=TINYINT},
+      goods_code = #{goodsCode,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

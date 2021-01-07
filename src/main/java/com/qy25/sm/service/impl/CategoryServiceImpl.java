@@ -19,6 +19,10 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, Long> impleme
     @Autowired
     private CategoryMapper categoryMapper;
 
+    /**
+     * 得到树形数据:children属性
+     * @return
+     */
     @Override
     public List<Category> getTreeData() {
         List<Category> categories = categoryMapper.selectByExample(null);
@@ -30,7 +34,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category, Long> impleme
     }
 
     /**
-     *返回其带有children
+     * 工具方法:返回其带有children
      */
     private Category getChildren(List<Category> categories,Category category) {
         List<Category> collect = categories.stream().filter(item ->

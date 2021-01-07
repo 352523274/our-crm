@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy25.sm.mapper.GoodsMapper">
+  <resultMap id="BaseResultMap" type="com.qy25.sm.entity.goods.Goods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_goods_id" jdbcType="BIGINT" property="firstGoodsId" />
+    <result column="gift_id" jdbcType="BIGINT" property="giftId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_brand_id" jdbcType="BIGINT" property="goodsBrandId" />
+    <result column="goods_catagory_id" jdbcType="BIGINT" property="goodsCatagoryId" />
+    <result column="goods_model" jdbcType="VARCHAR" property="goodsModel" />
+    <result column="goods_color" jdbcType="VARCHAR" property="goodsColor" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="shopping_price" jdbcType="DECIMAL" property="shoppingPrice" />
+    <result column="trance_message" jdbcType="VARCHAR" property="tranceMessage" />
+    <result column="goods_supplier" jdbcType="VARCHAR" property="goodsSupplier" />
+    <result column="purchase_dept_id" jdbcType="BIGINT" property="purchaseDeptId" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="stock" jdbcType="BIGINT" property="stock" />
+    <result column="min_stock" jdbcType="BIGINT" property="minStock" />
+    <result column="can_purchase" jdbcType="BIT" property="canPurchase" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, first_goods_id, gift_id, goods_name, goods_brand_id, goods_catagory_id, goods_model, 
+    goods_color, market_price, shopping_price, trance_message, goods_supplier, purchase_dept_id, 
+    purchase_price, stock, min_stock, can_purchase, add_time, creator_id, update_time, 
+    update_id
+  </sql>
+  <select id="selectByExample" parameterType="com.qy25.sm.entity.goods.GoodsExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_goods
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qy25.sm.entity.goods.GoodsExample">
+    delete from t_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qy25.sm.entity.goods.Goods">
+    insert into t_goods (id, first_goods_id, gift_id, 
+      goods_name, goods_brand_id, goods_catagory_id, 
+      goods_model, goods_color, market_price, 
+      shopping_price, trance_message, goods_supplier, 
+      purchase_dept_id, purchase_price, stock, 
+      min_stock, can_purchase, add_time, 
+      creator_id, update_time, update_id
+      )
+    values (#{id,jdbcType=BIGINT}, #{firstGoodsId,jdbcType=BIGINT}, #{giftId,jdbcType=BIGINT}, 
+      #{goodsName,jdbcType=VARCHAR}, #{goodsBrandId,jdbcType=BIGINT}, #{goodsCatagoryId,jdbcType=BIGINT}, 
+      #{goodsModel,jdbcType=VARCHAR}, #{goodsColor,jdbcType=VARCHAR}, #{marketPrice,jdbcType=DECIMAL}, 
+      #{shoppingPrice,jdbcType=DECIMAL}, #{tranceMessage,jdbcType=VARCHAR}, #{goodsSupplier,jdbcType=VARCHAR}, 
+      #{purchaseDeptId,jdbcType=BIGINT}, #{purchasePrice,jdbcType=DECIMAL}, #{stock,jdbcType=BIGINT}, 
+      #{minStock,jdbcType=BIGINT}, #{canPurchase,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qy25.sm.entity.goods.Goods">
+    insert into t_goods
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="firstGoodsId != null">
+        first_goods_id,
+      </if>
+      <if test="giftId != null">
+        gift_id,
+      </if>
+      <if test="goodsName != null">
+        goods_name,
+      </if>
+      <if test="goodsBrandId != null">
+        goods_brand_id,
+      </if>
+      <if test="goodsCatagoryId != null">
+        goods_catagory_id,
+      </if>
+      <if test="goodsModel != null">
+        goods_model,
+      </if>
+      <if test="goodsColor != null">
+        goods_color,
+      </if>
+      <if test="marketPrice != null">
+        market_price,
+      </if>
+      <if test="shoppingPrice != null">
+        shopping_price,
+      </if>
+      <if test="tranceMessage != null">
+        trance_message,
+      </if>
+      <if test="goodsSupplier != null">
+        goods_supplier,
+      </if>
+      <if test="purchaseDeptId != null">
+        purchase_dept_id,
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price,
+      </if>
+      <if test="stock != null">
+        stock,
+      </if>
+      <if test="minStock != null">
+        min_stock,
+      </if>
+      <if test="canPurchase != null">
+        can_purchase,
+      </if>
+      <if test="addTime != null">
+        add_time,
+      </if>
+      <if test="creatorId != null">
+        creator_id,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="updateId != null">
+        update_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="firstGoodsId != null">
+        #{firstGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBrandId != null">
+        #{goodsBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCatagoryId != null">
+        #{goodsCatagoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsModel != null">
+        #{goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null">
+        #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shoppingPrice != null">
+        #{shoppingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tranceMessage != null">
+        #{tranceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSupplier != null">
+        #{goodsSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDeptId != null">
+        #{purchaseDeptId,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null">
+        #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="minStock != null">
+        #{minStock,jdbcType=BIGINT},
+      </if>
+      <if test="canPurchase != null">
+        #{canPurchase,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        #{updateId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qy25.sm.entity.goods.GoodsExample" resultType="java.lang.Long">
+    select count(*) from t_goods
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_goods
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.firstGoodsId != null">
+        first_goods_id = #{record.firstGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="record.giftId != null">
+        gift_id = #{record.giftId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsName != null">
+        goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsBrandId != null">
+        goods_brand_id = #{record.goodsBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsCatagoryId != null">
+        goods_catagory_id = #{record.goodsCatagoryId,jdbcType=BIGINT},
+      </if>
+      <if test="record.goodsModel != null">
+        goods_model = #{record.goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsColor != null">
+        goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="record.marketPrice != null">
+        market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.shoppingPrice != null">
+        shopping_price = #{record.shoppingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.tranceMessage != null">
+        trance_message = #{record.tranceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsSupplier != null">
+        goods_supplier = #{record.goodsSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="record.purchaseDeptId != null">
+        purchase_dept_id = #{record.purchaseDeptId,jdbcType=BIGINT},
+      </if>
+      <if test="record.purchasePrice != null">
+        purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="record.stock != null">
+        stock = #{record.stock,jdbcType=BIGINT},
+      </if>
+      <if test="record.minStock != null">
+        min_stock = #{record.minStock,jdbcType=BIGINT},
+      </if>
+      <if test="record.canPurchase != null">
+        can_purchase = #{record.canPurchase,jdbcType=BIT},
+      </if>
+      <if test="record.addTime != null">
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.creatorId != null">
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateId != null">
+        update_id = #{record.updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_goods
+    set id = #{record.id,jdbcType=BIGINT},
+      first_goods_id = #{record.firstGoodsId,jdbcType=BIGINT},
+      gift_id = #{record.giftId,jdbcType=BIGINT},
+      goods_name = #{record.goodsName,jdbcType=VARCHAR},
+      goods_brand_id = #{record.goodsBrandId,jdbcType=BIGINT},
+      goods_catagory_id = #{record.goodsCatagoryId,jdbcType=BIGINT},
+      goods_model = #{record.goodsModel,jdbcType=VARCHAR},
+      goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      market_price = #{record.marketPrice,jdbcType=DECIMAL},
+      shopping_price = #{record.shoppingPrice,jdbcType=DECIMAL},
+      trance_message = #{record.tranceMessage,jdbcType=VARCHAR},
+      goods_supplier = #{record.goodsSupplier,jdbcType=VARCHAR},
+      purchase_dept_id = #{record.purchaseDeptId,jdbcType=BIGINT},
+      purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
+      stock = #{record.stock,jdbcType=BIGINT},
+      min_stock = #{record.minStock,jdbcType=BIGINT},
+      can_purchase = #{record.canPurchase,jdbcType=BIT},
+      add_time = #{record.addTime,jdbcType=TIMESTAMP},
+      creator_id = #{record.creatorId,jdbcType=BIGINT},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      update_id = #{record.updateId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qy25.sm.entity.goods.Goods">
+    update t_goods
+    <set>
+      <if test="firstGoodsId != null">
+        first_goods_id = #{firstGoodsId,jdbcType=BIGINT},
+      </if>
+      <if test="giftId != null">
+        gift_id = #{giftId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsName != null">
+        goods_name = #{goodsName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsBrandId != null">
+        goods_brand_id = #{goodsBrandId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsCatagoryId != null">
+        goods_catagory_id = #{goodsCatagoryId,jdbcType=BIGINT},
+      </if>
+      <if test="goodsModel != null">
+        goods_model = #{goodsModel,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsColor != null">
+        goods_color = #{goodsColor,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null">
+        market_price = #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="shoppingPrice != null">
+        shopping_price = #{shoppingPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="tranceMessage != null">
+        trance_message = #{tranceMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsSupplier != null">
+        goods_supplier = #{goodsSupplier,jdbcType=VARCHAR},
+      </if>
+      <if test="purchaseDeptId != null">
+        purchase_dept_id = #{purchaseDeptId,jdbcType=BIGINT},
+      </if>
+      <if test="purchasePrice != null">
+        purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="stock != null">
+        stock = #{stock,jdbcType=BIGINT},
+      </if>
+      <if test="minStock != null">
+        min_stock = #{minStock,jdbcType=BIGINT},
+      </if>
+      <if test="canPurchase != null">
+        can_purchase = #{canPurchase,jdbcType=BIT},
+      </if>
+      <if test="addTime != null">
+        add_time = #{addTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="creatorId != null">
+        creator_id = #{creatorId,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateId != null">
+        update_id = #{updateId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qy25.sm.entity.goods.Goods">
+    update t_goods
+    set first_goods_id = #{firstGoodsId,jdbcType=BIGINT},
+      gift_id = #{giftId,jdbcType=BIGINT},
+      goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_brand_id = #{goodsBrandId,jdbcType=BIGINT},
+      goods_catagory_id = #{goodsCatagoryId,jdbcType=BIGINT},
+      goods_model = #{goodsModel,jdbcType=VARCHAR},
+      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      market_price = #{marketPrice,jdbcType=DECIMAL},
+      shopping_price = #{shoppingPrice,jdbcType=DECIMAL},
+      trance_message = #{tranceMessage,jdbcType=VARCHAR},
+      goods_supplier = #{goodsSupplier,jdbcType=VARCHAR},
+      purchase_dept_id = #{purchaseDeptId,jdbcType=BIGINT},
+      purchase_price = #{purchasePrice,jdbcType=DECIMAL},
+      stock = #{stock,jdbcType=BIGINT},
+      min_stock = #{minStock,jdbcType=BIGINT},
+      can_purchase = #{canPurchase,jdbcType=BIT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
