@@ -9,12 +9,12 @@
     <result column="goods_brand_id" jdbcType="BIGINT" property="goodsBrandId" />
     <result column="goods_catagory_id" jdbcType="BIGINT" property="goodsCatagoryId" />
     <result column="goods_model" jdbcType="VARCHAR" property="goodsModel" />
-    <result column="goods_color" jdbcType="VARCHAR" property="goodsColor" />
+    <result column="goods_color_Id" jdbcType="BIGINT" property="goodsColorId" />
     <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
     <result column="shopping_price" jdbcType="DECIMAL" property="shoppingPrice" />
     <result column="trance_message" jdbcType="VARCHAR" property="tranceMessage" />
-    <result column="goods_supplier" jdbcType="VARCHAR" property="goodsSupplier" />
-    <result column="purchase_dept_id" jdbcType="BIGINT" property="purchaseDeptId" />
+    <result column="goods_supplier_id" jdbcType="VARCHAR" property="goodsSupplierId" />
+    <result column="purchase_dept" jdbcType="VARCHAR" property="purchaseDept" />
     <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
     <result column="stock" jdbcType="BIGINT" property="stock" />
     <result column="min_stock" jdbcType="BIGINT" property="minStock" />
@@ -84,9 +84,9 @@
   </sql>
   <sql id="Base_Column_List">
     id, first_goods_id, gift_id, goods_name, goods_brand_id, goods_catagory_id, goods_model, 
-    goods_color, market_price, shopping_price, trance_message, goods_supplier, purchase_dept_id, 
-    purchase_price, stock, min_stock, can_purchase, add_time, creator_id, update_time, 
-    update_id
+    goods_color_Id, market_price, shopping_price, trance_message, goods_supplier_id, 
+    purchase_dept, purchase_price, stock, min_stock, can_purchase, add_time, creator_id, 
+    update_time, update_id
   </sql>
   <select id="selectByExample" parameterType="com.qy25.sm.entity.goods.GoodsExample" resultMap="BaseResultMap">
     select
@@ -121,17 +121,17 @@
   <insert id="insert" parameterType="com.qy25.sm.entity.goods.Goods">
     insert into t_goods (id, first_goods_id, gift_id, 
       goods_name, goods_brand_id, goods_catagory_id, 
-      goods_model, goods_color, market_price, 
-      shopping_price, trance_message, goods_supplier, 
-      purchase_dept_id, purchase_price, stock, 
+      goods_model, goods_color_Id, market_price, 
+      shopping_price, trance_message, goods_supplier_id, 
+      purchase_dept, purchase_price, stock, 
       min_stock, can_purchase, add_time, 
       creator_id, update_time, update_id
       )
     values (#{id,jdbcType=BIGINT}, #{firstGoodsId,jdbcType=BIGINT}, #{giftId,jdbcType=BIGINT}, 
       #{goodsName,jdbcType=VARCHAR}, #{goodsBrandId,jdbcType=BIGINT}, #{goodsCatagoryId,jdbcType=BIGINT}, 
-      #{goodsModel,jdbcType=VARCHAR}, #{goodsColor,jdbcType=VARCHAR}, #{marketPrice,jdbcType=DECIMAL}, 
-      #{shoppingPrice,jdbcType=DECIMAL}, #{tranceMessage,jdbcType=VARCHAR}, #{goodsSupplier,jdbcType=VARCHAR}, 
-      #{purchaseDeptId,jdbcType=BIGINT}, #{purchasePrice,jdbcType=DECIMAL}, #{stock,jdbcType=BIGINT}, 
+      #{goodsModel,jdbcType=VARCHAR}, #{goodsColorId,jdbcType=BIGINT}, #{marketPrice,jdbcType=DECIMAL}, 
+      #{shoppingPrice,jdbcType=DECIMAL}, #{tranceMessage,jdbcType=VARCHAR}, #{goodsSupplierId,jdbcType=VARCHAR}, 
+      #{purchaseDept,jdbcType=VARCHAR}, #{purchasePrice,jdbcType=DECIMAL}, #{stock,jdbcType=BIGINT}, 
       #{minStock,jdbcType=BIGINT}, #{canPurchase,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, 
       #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
       )
@@ -160,8 +160,8 @@
       <if test="goodsModel != null">
         goods_model,
       </if>
-      <if test="goodsColor != null">
-        goods_color,
+      <if test="goodsColorId != null">
+        goods_color_Id,
       </if>
       <if test="marketPrice != null">
         market_price,
@@ -172,11 +172,11 @@
       <if test="tranceMessage != null">
         trance_message,
       </if>
-      <if test="goodsSupplier != null">
-        goods_supplier,
+      <if test="goodsSupplierId != null">
+        goods_supplier_id,
       </if>
-      <if test="purchaseDeptId != null">
-        purchase_dept_id,
+      <if test="purchaseDept != null">
+        purchase_dept,
       </if>
       <if test="purchasePrice != null">
         purchase_price,
@@ -225,8 +225,8 @@
       <if test="goodsModel != null">
         #{goodsModel,jdbcType=VARCHAR},
       </if>
-      <if test="goodsColor != null">
-        #{goodsColor,jdbcType=VARCHAR},
+      <if test="goodsColorId != null">
+        #{goodsColorId,jdbcType=BIGINT},
       </if>
       <if test="marketPrice != null">
         #{marketPrice,jdbcType=DECIMAL},
@@ -237,11 +237,11 @@
       <if test="tranceMessage != null">
         #{tranceMessage,jdbcType=VARCHAR},
       </if>
-      <if test="goodsSupplier != null">
-        #{goodsSupplier,jdbcType=VARCHAR},
+      <if test="goodsSupplierId != null">
+        #{goodsSupplierId,jdbcType=VARCHAR},
       </if>
-      <if test="purchaseDeptId != null">
-        #{purchaseDeptId,jdbcType=BIGINT},
+      <if test="purchaseDept != null">
+        #{purchaseDept,jdbcType=VARCHAR},
       </if>
       <if test="purchasePrice != null">
         #{purchasePrice,jdbcType=DECIMAL},
@@ -299,8 +299,8 @@
       <if test="record.goodsModel != null">
         goods_model = #{record.goodsModel,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodsColor != null">
-        goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      <if test="record.goodsColorId != null">
+        goods_color_Id = #{record.goodsColorId,jdbcType=BIGINT},
       </if>
       <if test="record.marketPrice != null">
         market_price = #{record.marketPrice,jdbcType=DECIMAL},
@@ -311,11 +311,11 @@
       <if test="record.tranceMessage != null">
         trance_message = #{record.tranceMessage,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodsSupplier != null">
-        goods_supplier = #{record.goodsSupplier,jdbcType=VARCHAR},
+      <if test="record.goodsSupplierId != null">
+        goods_supplier_id = #{record.goodsSupplierId,jdbcType=VARCHAR},
       </if>
-      <if test="record.purchaseDeptId != null">
-        purchase_dept_id = #{record.purchaseDeptId,jdbcType=BIGINT},
+      <if test="record.purchaseDept != null">
+        purchase_dept = #{record.purchaseDept,jdbcType=VARCHAR},
       </if>
       <if test="record.purchasePrice != null">
         purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
@@ -355,12 +355,12 @@
       goods_brand_id = #{record.goodsBrandId,jdbcType=BIGINT},
       goods_catagory_id = #{record.goodsCatagoryId,jdbcType=BIGINT},
       goods_model = #{record.goodsModel,jdbcType=VARCHAR},
-      goods_color = #{record.goodsColor,jdbcType=VARCHAR},
+      goods_color_Id = #{record.goodsColorId,jdbcType=BIGINT},
       market_price = #{record.marketPrice,jdbcType=DECIMAL},
       shopping_price = #{record.shoppingPrice,jdbcType=DECIMAL},
       trance_message = #{record.tranceMessage,jdbcType=VARCHAR},
-      goods_supplier = #{record.goodsSupplier,jdbcType=VARCHAR},
-      purchase_dept_id = #{record.purchaseDeptId,jdbcType=BIGINT},
+      goods_supplier_id = #{record.goodsSupplierId,jdbcType=VARCHAR},
+      purchase_dept = #{record.purchaseDept,jdbcType=VARCHAR},
       purchase_price = #{record.purchasePrice,jdbcType=DECIMAL},
       stock = #{record.stock,jdbcType=BIGINT},
       min_stock = #{record.minStock,jdbcType=BIGINT},
@@ -394,8 +394,8 @@
       <if test="goodsModel != null">
         goods_model = #{goodsModel,jdbcType=VARCHAR},
       </if>
-      <if test="goodsColor != null">
-        goods_color = #{goodsColor,jdbcType=VARCHAR},
+      <if test="goodsColorId != null">
+        goods_color_Id = #{goodsColorId,jdbcType=BIGINT},
       </if>
       <if test="marketPrice != null">
         market_price = #{marketPrice,jdbcType=DECIMAL},
@@ -406,11 +406,11 @@
       <if test="tranceMessage != null">
         trance_message = #{tranceMessage,jdbcType=VARCHAR},
       </if>
-      <if test="goodsSupplier != null">
-        goods_supplier = #{goodsSupplier,jdbcType=VARCHAR},
+      <if test="goodsSupplierId != null">
+        goods_supplier_id = #{goodsSupplierId,jdbcType=VARCHAR},
       </if>
-      <if test="purchaseDeptId != null">
-        purchase_dept_id = #{purchaseDeptId,jdbcType=BIGINT},
+      <if test="purchaseDept != null">
+        purchase_dept = #{purchaseDept,jdbcType=VARCHAR},
       </if>
       <if test="purchasePrice != null">
         purchase_price = #{purchasePrice,jdbcType=DECIMAL},
@@ -447,12 +447,12 @@
       goods_brand_id = #{goodsBrandId,jdbcType=BIGINT},
       goods_catagory_id = #{goodsCatagoryId,jdbcType=BIGINT},
       goods_model = #{goodsModel,jdbcType=VARCHAR},
-      goods_color = #{goodsColor,jdbcType=VARCHAR},
+      goods_color_Id = #{goodsColorId,jdbcType=BIGINT},
       market_price = #{marketPrice,jdbcType=DECIMAL},
       shopping_price = #{shoppingPrice,jdbcType=DECIMAL},
       trance_message = #{tranceMessage,jdbcType=VARCHAR},
-      goods_supplier = #{goodsSupplier,jdbcType=VARCHAR},
-      purchase_dept_id = #{purchaseDeptId,jdbcType=BIGINT},
+      goods_supplier_id = #{goodsSupplierId,jdbcType=VARCHAR},
+      purchase_dept = #{purchaseDept,jdbcType=VARCHAR},
       purchase_price = #{purchasePrice,jdbcType=DECIMAL},
       stock = #{stock,jdbcType=BIGINT},
       min_stock = #{minStock,jdbcType=BIGINT},

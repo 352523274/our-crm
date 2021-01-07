@@ -546,73 +546,63 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorIsNull() {
-            addCriterion("goods_color is null");
+        public Criteria andGoodsColorIdIsNull() {
+            addCriterion("goods_color_Id is null");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorIsNotNull() {
-            addCriterion("goods_color is not null");
+        public Criteria andGoodsColorIdIsNotNull() {
+            addCriterion("goods_color_Id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorEqualTo(String value) {
-            addCriterion("goods_color =", value, "goodsColor");
+        public Criteria andGoodsColorIdEqualTo(Long value) {
+            addCriterion("goods_color_Id =", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorNotEqualTo(String value) {
-            addCriterion("goods_color <>", value, "goodsColor");
+        public Criteria andGoodsColorIdNotEqualTo(Long value) {
+            addCriterion("goods_color_Id <>", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorGreaterThan(String value) {
-            addCriterion("goods_color >", value, "goodsColor");
+        public Criteria andGoodsColorIdGreaterThan(Long value) {
+            addCriterion("goods_color_Id >", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorGreaterThanOrEqualTo(String value) {
-            addCriterion("goods_color >=", value, "goodsColor");
+        public Criteria andGoodsColorIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("goods_color_Id >=", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorLessThan(String value) {
-            addCriterion("goods_color <", value, "goodsColor");
+        public Criteria andGoodsColorIdLessThan(Long value) {
+            addCriterion("goods_color_Id <", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorLessThanOrEqualTo(String value) {
-            addCriterion("goods_color <=", value, "goodsColor");
+        public Criteria andGoodsColorIdLessThanOrEqualTo(Long value) {
+            addCriterion("goods_color_Id <=", value, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorLike(String value) {
-            addCriterion("goods_color like", value, "goodsColor");
+        public Criteria andGoodsColorIdIn(List<Long> values) {
+            addCriterion("goods_color_Id in", values, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorNotLike(String value) {
-            addCriterion("goods_color not like", value, "goodsColor");
+        public Criteria andGoodsColorIdNotIn(List<Long> values) {
+            addCriterion("goods_color_Id not in", values, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorIn(List<String> values) {
-            addCriterion("goods_color in", values, "goodsColor");
+        public Criteria andGoodsColorIdBetween(Long value1, Long value2) {
+            addCriterion("goods_color_Id between", value1, value2, "goodsColorId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsColorNotIn(List<String> values) {
-            addCriterion("goods_color not in", values, "goodsColor");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsColorBetween(String value1, String value2) {
-            addCriterion("goods_color between", value1, value2, "goodsColor");
-            return (Criteria) this;
-        }
-
-        public Criteria andGoodsColorNotBetween(String value1, String value2) {
-            addCriterion("goods_color not between", value1, value2, "goodsColor");
+        public Criteria andGoodsColorIdNotBetween(Long value1, Long value2) {
+            addCriterion("goods_color_Id not between", value1, value2, "goodsColorId");
             return (Criteria) this;
         }
 
@@ -806,133 +796,143 @@ public class GoodsExample {
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierIsNull() {
-            addCriterion("goods_supplier is null");
+        public Criteria andGoodsSupplierIdIsNull() {
+            addCriterion("goods_supplier_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierIsNotNull() {
-            addCriterion("goods_supplier is not null");
+        public Criteria andGoodsSupplierIdIsNotNull() {
+            addCriterion("goods_supplier_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierEqualTo(String value) {
-            addCriterion("goods_supplier =", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdEqualTo(String value) {
+            addCriterion("goods_supplier_id =", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierNotEqualTo(String value) {
-            addCriterion("goods_supplier <>", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdNotEqualTo(String value) {
+            addCriterion("goods_supplier_id <>", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierGreaterThan(String value) {
-            addCriterion("goods_supplier >", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdGreaterThan(String value) {
+            addCriterion("goods_supplier_id >", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierGreaterThanOrEqualTo(String value) {
-            addCriterion("goods_supplier >=", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdGreaterThanOrEqualTo(String value) {
+            addCriterion("goods_supplier_id >=", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierLessThan(String value) {
-            addCriterion("goods_supplier <", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdLessThan(String value) {
+            addCriterion("goods_supplier_id <", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierLessThanOrEqualTo(String value) {
-            addCriterion("goods_supplier <=", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdLessThanOrEqualTo(String value) {
+            addCriterion("goods_supplier_id <=", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierLike(String value) {
-            addCriterion("goods_supplier like", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdLike(String value) {
+            addCriterion("goods_supplier_id like", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierNotLike(String value) {
-            addCriterion("goods_supplier not like", value, "goodsSupplier");
+        public Criteria andGoodsSupplierIdNotLike(String value) {
+            addCriterion("goods_supplier_id not like", value, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierIn(List<String> values) {
-            addCriterion("goods_supplier in", values, "goodsSupplier");
+        public Criteria andGoodsSupplierIdIn(List<String> values) {
+            addCriterion("goods_supplier_id in", values, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierNotIn(List<String> values) {
-            addCriterion("goods_supplier not in", values, "goodsSupplier");
+        public Criteria andGoodsSupplierIdNotIn(List<String> values) {
+            addCriterion("goods_supplier_id not in", values, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierBetween(String value1, String value2) {
-            addCriterion("goods_supplier between", value1, value2, "goodsSupplier");
+        public Criteria andGoodsSupplierIdBetween(String value1, String value2) {
+            addCriterion("goods_supplier_id between", value1, value2, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andGoodsSupplierNotBetween(String value1, String value2) {
-            addCriterion("goods_supplier not between", value1, value2, "goodsSupplier");
+        public Criteria andGoodsSupplierIdNotBetween(String value1, String value2) {
+            addCriterion("goods_supplier_id not between", value1, value2, "goodsSupplierId");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdIsNull() {
-            addCriterion("purchase_dept_id is null");
+        public Criteria andPurchaseDeptIsNull() {
+            addCriterion("purchase_dept is null");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdIsNotNull() {
-            addCriterion("purchase_dept_id is not null");
+        public Criteria andPurchaseDeptIsNotNull() {
+            addCriterion("purchase_dept is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdEqualTo(Long value) {
-            addCriterion("purchase_dept_id =", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptEqualTo(String value) {
+            addCriterion("purchase_dept =", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdNotEqualTo(Long value) {
-            addCriterion("purchase_dept_id <>", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptNotEqualTo(String value) {
+            addCriterion("purchase_dept <>", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdGreaterThan(Long value) {
-            addCriterion("purchase_dept_id >", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptGreaterThan(String value) {
+            addCriterion("purchase_dept >", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("purchase_dept_id >=", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptGreaterThanOrEqualTo(String value) {
+            addCriterion("purchase_dept >=", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdLessThan(Long value) {
-            addCriterion("purchase_dept_id <", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptLessThan(String value) {
+            addCriterion("purchase_dept <", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdLessThanOrEqualTo(Long value) {
-            addCriterion("purchase_dept_id <=", value, "purchaseDeptId");
+        public Criteria andPurchaseDeptLessThanOrEqualTo(String value) {
+            addCriterion("purchase_dept <=", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdIn(List<Long> values) {
-            addCriterion("purchase_dept_id in", values, "purchaseDeptId");
+        public Criteria andPurchaseDeptLike(String value) {
+            addCriterion("purchase_dept like", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdNotIn(List<Long> values) {
-            addCriterion("purchase_dept_id not in", values, "purchaseDeptId");
+        public Criteria andPurchaseDeptNotLike(String value) {
+            addCriterion("purchase_dept not like", value, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdBetween(Long value1, Long value2) {
-            addCriterion("purchase_dept_id between", value1, value2, "purchaseDeptId");
+        public Criteria andPurchaseDeptIn(List<String> values) {
+            addCriterion("purchase_dept in", values, "purchaseDept");
             return (Criteria) this;
         }
 
-        public Criteria andPurchaseDeptIdNotBetween(Long value1, Long value2) {
-            addCriterion("purchase_dept_id not between", value1, value2, "purchaseDeptId");
+        public Criteria andPurchaseDeptNotIn(List<String> values) {
+            addCriterion("purchase_dept not in", values, "purchaseDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDeptBetween(String value1, String value2) {
+            addCriterion("purchase_dept between", value1, value2, "purchaseDept");
+            return (Criteria) this;
+        }
+
+        public Criteria andPurchaseDeptNotBetween(String value1, String value2) {
+            addCriterion("purchase_dept not between", value1, value2, "purchaseDept");
             return (Criteria) this;
         }
 

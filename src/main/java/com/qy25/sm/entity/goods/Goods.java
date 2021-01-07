@@ -1,12 +1,14 @@
 package com.qy25.sm.entity.goods;
 
+import com.qy25.sm.entity.base.BaseEntity;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
-public class Goods {
+public class Goods extends BaseEntity<Long> {
+
 
     private Long firstGoodsId;
 
@@ -20,7 +22,7 @@ public class Goods {
 
     private String goodsModel;
 
-    private String goodsColor;
+    private Long goodsColorId;
 
     private BigDecimal marketPrice;
 
@@ -28,9 +30,9 @@ public class Goods {
 
     private String tranceMessage;
 
-    private String goodsSupplier;
+    private String goodsSupplierId;
 
-    private Long purchaseDeptId;
+    private String purchaseDept;
 
     private BigDecimal purchasePrice;
 

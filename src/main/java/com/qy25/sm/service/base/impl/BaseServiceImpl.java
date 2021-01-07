@@ -88,7 +88,7 @@ public class BaseServiceImpl<T, ID> implements BaseService<T, ID> {
     /**
      * 封装分页数据
      */
-    private PageVo<T> setPageVo(List<T> list){
+    protected PageVo<T> setPageVo(List<T> list){
         PageInfo<T> pageInfo=new PageInfo<T>(list);
         long total = pageInfo.getTotal();
         PageVo<T> tPageVo = new PageVo<>();
