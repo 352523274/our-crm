@@ -1,0 +1,385 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qy25.sm.mapper.sell.SellOrderMapper">
+    <resultMap id="BaseResultMap" type="com.qy25.sm.vo.SellVo">
+        <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
+        <result column="delivery_name" jdbcType="VARCHAR" property="deliveryName"/>
+        <association property="sellOrder" javaType="com.qy25.sm.entity.sell.SellOrder">
+            <id column="id" jdbcType="BIGINT" property="id"/>
+            <result column="order_number" jdbcType="BIGINT" property="orderNumber"/>
+            <result column="order_type" jdbcType="BIGINT" property="orderType"/>
+            <result column="order_action" jdbcType="VARCHAR" property="orderAction"/>
+            <result column="business_type" jdbcType="BIGINT" property="businessType"/>
+            <result column="payment_method" jdbcType="BIGINT" property="paymentMethod"/>
+            <result column="delivery_method" jdbcType="BIGINT" property="deliveryMethod"/>
+            <result column="order_status" jdbcType="BIT" property="orderStatus"/>
+            <result column="returned_couse" jdbcType="VARCHAR" property="returnedCouse"/>
+            <result column="returned_orders" jdbcType="TINYINT" property="returnedOrders"/>
+            <result column="deliveryStatus" jdbcType="BIT" property="deliverystatus"/>
+            <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+            <result column="update_id" jdbcType="BIGINT" property="updateId"/>
+            <result column="creator_id" jdbcType="BIGINT" property="creatorId"/>
+            <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+            <result column="order_tstatus" jdbcType="VARCHAR" property="orderTstatus"/>
+        </association>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, order_number, order_type, order_action, business_type, payment_method, delivery_method, 
+    order_status, returned_couse, returned_orders, deliveryStatus, add_time, update_id, 
+    creator_id, update_time, order_tstatus
+  </sql>
+    <select id="selectByExample" resultMap="BaseResultMap">
+   select a.delivery_name,b.type_name,c.*
+   FROM t_delivery_method a ,t_order_type b,t_sell_order c
+   WHERE a.id=c.delivery_method
+   AND b.id=c.order_type
+  </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+   select a.delivery_name,b.type_name,c.*
+   FROM t_delivery_method a ,t_order_type b,t_sell_order c
+   WHERE c.id=#{id,jdbcType=BIGINT}
+   AND a.id=c.delivery_method
+   AND b.id=c.order_type
+  </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_sell_order
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+    <delete id="deleteByExample" parameterType="com.qy25.sm.entity.sell.SellOrderExample">
+        delete from t_sell_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="com.qy25.sm.entity.sell.SellOrder">
+    insert into t_sell_order (id, order_number, order_type, 
+      order_action, business_type, payment_method, 
+      delivery_method, order_status, returned_couse, 
+      returned_orders, deliveryStatus, add_time, 
+      update_id, creator_id, update_time, 
+      order_tstatus)
+    values (#{id,jdbcType=BIGINT}, #{orderNumber,jdbcType=BIGINT}, #{orderType,jdbcType=BIGINT}, 
+      #{orderAction,jdbcType=VARCHAR}, #{businessType,jdbcType=BIGINT}, #{paymentMethod,jdbcType=BIGINT}, 
+      #{deliveryMethod,jdbcType=BIGINT}, #{orderStatus,jdbcType=BIT}, #{returnedCouse,jdbcType=VARCHAR}, 
+      #{returnedOrders,jdbcType=TINYINT}, #{deliverystatus,jdbcType=BIT}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{updateId,jdbcType=BIGINT}, #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{orderTstatus,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.qy25.sm.entity.sell.SellOrder">
+        insert into t_sell_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="orderNumber != null">
+                order_number,
+            </if>
+            <if test="orderType != null">
+                order_type,
+            </if>
+            <if test="orderAction != null">
+                order_action,
+            </if>
+            <if test="businessType != null">
+                business_type,
+            </if>
+            <if test="paymentMethod != null">
+                payment_method,
+            </if>
+            <if test="deliveryMethod != null">
+                delivery_method,
+            </if>
+            <if test="orderStatus != null">
+                order_status,
+            </if>
+            <if test="returnedCouse != null">
+                returned_couse,
+            </if>
+            <if test="returnedOrders != null">
+                returned_orders,
+            </if>
+            <if test="deliverystatus != null">
+                deliveryStatus,
+            </if>
+            <if test="addTime != null">
+                add_time,
+            </if>
+            <if test="updateId != null">
+                update_id,
+            </if>
+            <if test="creatorId != null">
+                creator_id,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="orderTstatus != null">
+                order_tstatus,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="orderNumber != null">
+                #{orderNumber,jdbcType=BIGINT},
+            </if>
+            <if test="orderType != null">
+                #{orderType,jdbcType=BIGINT},
+            </if>
+            <if test="orderAction != null">
+                #{orderAction,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                #{businessType,jdbcType=BIGINT},
+            </if>
+            <if test="paymentMethod != null">
+                #{paymentMethod,jdbcType=BIGINT},
+            </if>
+            <if test="deliveryMethod != null">
+                #{deliveryMethod,jdbcType=BIGINT},
+            </if>
+            <if test="orderStatus != null">
+                #{orderStatus,jdbcType=BIT},
+            </if>
+            <if test="returnedCouse != null">
+                #{returnedCouse,jdbcType=VARCHAR},
+            </if>
+            <if test="returnedOrders != null">
+                #{returnedOrders,jdbcType=TINYINT},
+            </if>
+            <if test="deliverystatus != null">
+                #{deliverystatus,jdbcType=BIT},
+            </if>
+            <if test="addTime != null">
+                #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="creatorId != null">
+                #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderTstatus != null">
+                #{orderTstatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="com.qy25.sm.entity.sell.SellOrderExample" resultType="java.lang.Long">
+        select count(*) from t_sell_order
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        update t_sell_order
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderNumber != null">
+                order_number = #{record.orderNumber,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderType != null">
+                order_type = #{record.orderType,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderAction != null">
+                order_action = #{record.orderAction,jdbcType=VARCHAR},
+            </if>
+            <if test="record.businessType != null">
+                business_type = #{record.businessType,jdbcType=BIGINT},
+            </if>
+            <if test="record.paymentMethod != null">
+                payment_method = #{record.paymentMethod,jdbcType=BIGINT},
+            </if>
+            <if test="record.deliveryMethod != null">
+                delivery_method = #{record.deliveryMethod,jdbcType=BIGINT},
+            </if>
+            <if test="record.orderStatus != null">
+                order_status = #{record.orderStatus,jdbcType=BIT},
+            </if>
+            <if test="record.returnedCouse != null">
+                returned_couse = #{record.returnedCouse,jdbcType=VARCHAR},
+            </if>
+            <if test="record.returnedOrders != null">
+                returned_orders = #{record.returnedOrders,jdbcType=TINYINT},
+            </if>
+            <if test="record.deliverystatus != null">
+                deliveryStatus = #{record.deliverystatus,jdbcType=BIT},
+            </if>
+            <if test="record.addTime != null">
+                add_time = #{record.addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateId != null">
+                update_id = #{record.updateId,jdbcType=BIGINT},
+            </if>
+            <if test="record.creatorId != null">
+                creator_id = #{record.creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.orderTstatus != null">
+                order_tstatus = #{record.orderTstatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        update t_sell_order
+        set id = #{record.id,jdbcType=BIGINT},
+        order_number = #{record.orderNumber,jdbcType=BIGINT},
+        order_type = #{record.orderType,jdbcType=BIGINT},
+        order_action = #{record.orderAction,jdbcType=VARCHAR},
+        business_type = #{record.businessType,jdbcType=BIGINT},
+        payment_method = #{record.paymentMethod,jdbcType=BIGINT},
+        delivery_method = #{record.deliveryMethod,jdbcType=BIGINT},
+        order_status = #{record.orderStatus,jdbcType=BIT},
+        returned_couse = #{record.returnedCouse,jdbcType=VARCHAR},
+        returned_orders = #{record.returnedOrders,jdbcType=TINYINT},
+        deliveryStatus = #{record.deliverystatus,jdbcType=BIT},
+        add_time = #{record.addTime,jdbcType=TIMESTAMP},
+        update_id = #{record.updateId,jdbcType=BIGINT},
+        creator_id = #{record.creatorId,jdbcType=BIGINT},
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+        order_tstatus = #{record.orderTstatus,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.qy25.sm.entity.sell.SellOrder">
+        update t_sell_order
+        <set>
+            <if test="orderNumber != null">
+                order_number = #{orderNumber,jdbcType=BIGINT},
+            </if>
+            <if test="orderType != null">
+                order_type = #{orderType,jdbcType=BIGINT},
+            </if>
+            <if test="orderAction != null">
+                order_action = #{orderAction,jdbcType=VARCHAR},
+            </if>
+            <if test="businessType != null">
+                business_type = #{businessType,jdbcType=BIGINT},
+            </if>
+            <if test="paymentMethod != null">
+                payment_method = #{paymentMethod,jdbcType=BIGINT},
+            </if>
+            <if test="deliveryMethod != null">
+                delivery_method = #{deliveryMethod,jdbcType=BIGINT},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus,jdbcType=BIT},
+            </if>
+            <if test="returnedCouse != null">
+                returned_couse = #{returnedCouse,jdbcType=VARCHAR},
+            </if>
+            <if test="returnedOrders != null">
+                returned_orders = #{returnedOrders,jdbcType=TINYINT},
+            </if>
+            <if test="deliverystatus != null">
+                deliveryStatus = #{deliverystatus,jdbcType=BIT},
+            </if>
+            <if test="addTime != null">
+                add_time = #{addTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateId != null">
+                update_id = #{updateId,jdbcType=BIGINT},
+            </if>
+            <if test="creatorId != null">
+                creator_id = #{creatorId,jdbcType=BIGINT},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="orderTstatus != null">
+                order_tstatus = #{orderTstatus,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.qy25.sm.entity.sell.SellOrder">
+    update t_sell_order
+    set order_number = #{orderNumber,jdbcType=BIGINT},
+      order_type = #{orderType,jdbcType=BIGINT},
+      order_action = #{orderAction,jdbcType=VARCHAR},
+      business_type = #{businessType,jdbcType=BIGINT},
+      payment_method = #{paymentMethod,jdbcType=BIGINT},
+      delivery_method = #{deliveryMethod,jdbcType=BIGINT},
+      order_status = #{orderStatus,jdbcType=BIT},
+      returned_couse = #{returnedCouse,jdbcType=VARCHAR},
+      returned_orders = #{returnedOrders,jdbcType=TINYINT},
+      deliveryStatus = #{deliverystatus,jdbcType=BIT},
+      add_time = #{addTime,jdbcType=TIMESTAMP},
+      update_id = #{updateId,jdbcType=BIGINT},
+      creator_id = #{creatorId,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      order_tstatus = #{orderTstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
