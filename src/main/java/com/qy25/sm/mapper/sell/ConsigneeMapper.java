@@ -20,7 +20,7 @@ public interface ConsigneeMapper {
 
     List<ConsigneeVo> selectByExample();
 
-    ConsigneeVo selectByPrimaryKey(Long id);
+    List<ConsigneeVo> selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Consignee record, @Param("example") ConsigneeExample example);
 

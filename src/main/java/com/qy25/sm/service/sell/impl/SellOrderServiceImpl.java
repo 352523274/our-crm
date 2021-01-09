@@ -51,9 +51,9 @@ public class SellOrderServiceImpl implements SellOrderService {
      * @return
      */
     @Override
-    public ConsigneeVo findDetailById(long id) {
-        ConsigneeVo consigneeVo = consigneeMapper.selectByPrimaryKey(id);
-        return consigneeVo;
+    public List<ConsigneeVo> findDetailById(long id) {
+        List<ConsigneeVo> consigneeVos = consigneeMapper.selectByPrimaryKey(id);
+        return consigneeVos;
     }
 
     /**

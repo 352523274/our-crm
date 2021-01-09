@@ -87,14 +87,16 @@
   </sql>
   <select id="selectByExample"  resultMap="BaseResultMap">
     select b.id goodId,b.shopping_price,b.goods_name,a.*
-    FROM t_consignee a ,t_goods b
-    where a.consignee_goodsid=b.id
+    FROM t_consignee a ,t_goods b,t_consignee_goods c
+    WHERE a.id=c.user_id
+    AND b.id=c.good_id
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select b.id goodId,b.shopping_price,b.goods_name,a.*
-    FROM t_consignee a ,t_goods b
-    WHERE a.id=#{id}
-    AND a.consignee_goodsid=b.id
+    FROM t_consignee a ,t_goods b,t_consignee_goods c
+    WHERE a.id=c.user_id
+    AND b.id=c.good_id
+    And a.id=#{id}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_consignee

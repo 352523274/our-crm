@@ -35,7 +35,9 @@ public class SellOrderController {
     }
 
     @GetMapping("detail")
-    public AxiosResult<ConsigneeVo> findDetailById(long id){
-        return AxiosResult.success(sellOrderService.findDetailById(id));
+    public AxiosResult<List<ConsigneeVo>> findDetailById(long id){
+        List<ConsigneeVo> detailById = sellOrderService.findDetailById(id);
+        System.out.println(detailById);
+        return AxiosResult.success(detailById);
     }
 }

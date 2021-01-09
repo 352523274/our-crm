@@ -12,5 +12,5 @@ public interface SellOrderService {
 
     SellVo findById(long id);
 
-    ConsigneeVo findDetailById(long id);
+    List<ConsigneeVo> findDetailById(long id);
 }
