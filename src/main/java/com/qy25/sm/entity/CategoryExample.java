@@ -305,63 +305,123 @@ public class CategoryExample {
             return (Criteria) this;
         }
 
+        public Criteria andIsParentIsNull() {
+            addCriterion("is_parent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentIsNotNull() {
+            addCriterion("is_parent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentEqualTo(Boolean value) {
+            addCriterion("is_parent =", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentNotEqualTo(Boolean value) {
+            addCriterion("is_parent <>", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentGreaterThan(Boolean value) {
+            addCriterion("is_parent >", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("is_parent >=", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentLessThan(Boolean value) {
+            addCriterion("is_parent <", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentLessThanOrEqualTo(Boolean value) {
+            addCriterion("is_parent <=", value, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentIn(List<Boolean> values) {
+            addCriterion("is_parent in", values, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentNotIn(List<Boolean> values) {
+            addCriterion("is_parent not in", values, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_parent between", value1, value2, "isParent");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsParentNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("is_parent not between", value1, value2, "isParent");
+            return (Criteria) this;
+        }
+
         public Criteria andParentIdIsNull() {
-            addCriterion("parent-id is null");
+            addCriterion("parent_id is null");
             return (Criteria) this;
         }
 
         public Criteria andParentIdIsNotNull() {
-            addCriterion("parent-id is not null");
+            addCriterion("parent_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andParentIdEqualTo(Long value) {
-            addCriterion("parent-id =", value, "parentId");
+            addCriterion("parent_id =", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdNotEqualTo(Long value) {
-            addCriterion("parent-id <>", value, "parentId");
+            addCriterion("parent_id <>", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdGreaterThan(Long value) {
-            addCriterion("parent-id >", value, "parentId");
+            addCriterion("parent_id >", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("parent-id >=", value, "parentId");
+            addCriterion("parent_id >=", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdLessThan(Long value) {
-            addCriterion("parent-id <", value, "parentId");
+            addCriterion("parent_id <", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdLessThanOrEqualTo(Long value) {
-            addCriterion("parent-id <=", value, "parentId");
+            addCriterion("parent_id <=", value, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdIn(List<Long> values) {
-            addCriterion("parent-id in", values, "parentId");
+            addCriterion("parent_id in", values, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdNotIn(List<Long> values) {
-            addCriterion("parent-id not in", values, "parentId");
+            addCriterion("parent_id not in", values, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdBetween(Long value1, Long value2) {
-            addCriterion("parent-id between", value1, value2, "parentId");
+            addCriterion("parent_id between", value1, value2, "parentId");
             return (Criteria) this;
         }
 
         public Criteria andParentIdNotBetween(Long value1, Long value2) {
-            addCriterion("parent-id not between", value1, value2, "parentId");
+            addCriterion("parent_id not between", value1, value2, "parentId");
             return (Criteria) this;
         }
 

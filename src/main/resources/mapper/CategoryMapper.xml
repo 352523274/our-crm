@@ -5,6 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
     <result column="category_desc" jdbcType="VARCHAR" property="categoryDesc" />
+    <result column="is_parent" jdbcType="BIT" property="isParent" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
@@ -70,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, category_name, category_desc, parent_id, add_time, creator_id, update_time, update_id
+    id, category_name, category_desc, is_parent, parent_id, add_time, creator_id, update_time, 
+    update_id
   </sql>
   <select id="selectByExample" parameterType="com.qy25.sm.entity.CategoryExample" resultMap="BaseResultMap">
     select
@@ -104,11 +106,13 @@
   </delete>
   <insert id="insert" parameterType="com.qy25.sm.entity.Category">
     insert into t_category (id, category_name, category_desc, 
-      parent_id, add_time, creator_id,
-      update_time, update_id)
+      is_parent, parent_id, add_time, 
+      creator_id, update_time, update_id
+      )
     values (#{id,jdbcType=BIGINT}, #{categoryName,jdbcType=VARCHAR}, #{categoryDesc,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, #{creatorId,jdbcType=BIGINT}, 
-      #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT})
+      #{isParent,jdbcType=BIT}, #{parentId,jdbcType=BIGINT}, #{addTime,jdbcType=TIMESTAMP}, 
+      #{creatorId,jdbcType=BIGINT}, #{updateTime,jdbcType=TIMESTAMP}, #{updateId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.qy25.sm.entity.Category">
     insert into t_category
@@ -121,6 +125,9 @@
       </if>
       <if test="categoryDesc != null">
         category_desc,
+      </if>
+      <if test="isParent != null">
+        is_parent,
       </if>
       <if test="parentId != null">
         parent_id,
@@ -147,6 +154,9 @@
       </if>
       <if test="categoryDesc != null">
         #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isParent != null">
+        #{isParent,jdbcType=BIT},
       </if>
       <if test="parentId != null">
         #{parentId,jdbcType=BIGINT},
@@ -183,6 +193,9 @@
       <if test="record.categoryDesc != null">
         category_desc = #{record.categoryDesc,jdbcType=VARCHAR},
       </if>
+      <if test="record.isParent != null">
+        is_parent = #{record.isParent,jdbcType=BIT},
+      </if>
       <if test="record.parentId != null">
         parent_id = #{record.parentId,jdbcType=BIGINT},
       </if>
@@ -208,6 +221,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       category_name = #{record.categoryName,jdbcType=VARCHAR},
       category_desc = #{record.categoryDesc,jdbcType=VARCHAR},
+      is_parent = #{record.isParent,jdbcType=BIT},
       parent_id = #{record.parentId,jdbcType=BIGINT},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       creator_id = #{record.creatorId,jdbcType=BIGINT},
@@ -225,6 +239,9 @@
       </if>
       <if test="categoryDesc != null">
         category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isParent != null">
+        is_parent = #{isParent,jdbcType=BIT},
       </if>
       <if test="parentId != null">
         parent_id = #{parentId,jdbcType=BIGINT},
@@ -248,6 +265,7 @@
     update t_category
     set category_name = #{categoryName,jdbcType=VARCHAR},
       category_desc = #{categoryDesc,jdbcType=VARCHAR},
+      is_parent = #{isParent,jdbcType=BIT},
       parent_id = #{parentId,jdbcType=BIGINT},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       creator_id = #{creatorId,jdbcType=BIGINT},

@@ -76,6 +76,57 @@
     id, supplier_name, supplier_contact, supplier_phone, supplier_email, supplier_address, 
     supplier_brank, supplier_brank_code, add_time, creator_id, update_time
   </sql>
+<!--  自定的方法-->
+
+  <resultMap id="GoodsResultMap" type="com.qy25.sm.entity.goods.Goods">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="first_goods_id" jdbcType="BIGINT" property="firstGoodsId" />
+    <result column="gift_id" jdbcType="BIGINT" property="giftId" />
+    <result column="goods_name" jdbcType="VARCHAR" property="goodsName" />
+    <result column="goods_brand_id" jdbcType="BIGINT" property="goodsBrandId" />
+    <result column="goods_catagory_id" jdbcType="BIGINT" property="goodsCatagoryId" />
+    <result column="goods_model" jdbcType="VARCHAR" property="goodsModel" />
+    <result column="goods_color_Id" jdbcType="BIGINT" property="goodsColorId" />
+    <result column="market_price" jdbcType="DECIMAL" property="marketPrice" />
+    <result column="shopping_price" jdbcType="DECIMAL" property="shoppingPrice" />
+    <result column="trance_message" jdbcType="VARCHAR" property="tranceMessage" />
+    <result column="goods_supplier_id" jdbcType="VARCHAR" property="goodsSupplierId" />
+    <result column="purchase_dept" jdbcType="VARCHAR" property="purchaseDept" />
+    <result column="purchase_price" jdbcType="DECIMAL" property="purchasePrice" />
+    <result column="stock" jdbcType="BIGINT" property="stock" />
+    <result column="min_stock" jdbcType="BIGINT" property="minStock" />
+    <result column="can_purchase" jdbcType="BIT" property="canPurchase" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+    <result column="creator_id" jdbcType="BIGINT" property="creatorId" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="update_id" jdbcType="BIGINT" property="updateId" />
+  </resultMap>
+
+
+
+  <select id="getAddGoods" parameterType="java.lang.Long" resultMap="GoodsResultMap">
+    select g.* from t_supplier_goods sg ,t_goods g WHERE sg.goods_id=g.id and sg.supplier_id=#{sdajkaskfkha}
+  </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <select id="selectByExample" parameterType="com.qy25.sm.entity.SupplierExample" resultMap="BaseResultMap">
     select
     <if test="distinct">

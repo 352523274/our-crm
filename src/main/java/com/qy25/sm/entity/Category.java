@@ -15,6 +15,7 @@ public class Category extends BaseEntity<Long> {
 
     private Long parentId;
 
+    private Boolean isParent;
 
     private List<Category> children;
 
