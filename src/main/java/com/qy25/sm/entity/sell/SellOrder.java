@@ -1,9 +1,11 @@
 package com.qy25.sm.entity.sell;
 
+import com.qy25.sm.entity.base.BaseEntity;
+
 import java.util.Date;
 
-public class SellOrder {
-    private Long id;
+public class SellOrder extends BaseEntity<Long> {
+
 
     private Long orderNumber;
 
@@ -17,7 +19,7 @@ public class SellOrder {
 
     private Long deliveryMethod;
 
-    private Boolean orderStatus;
+    private Long orderStatus;
 
     private String returnedCouse;
 
@@ -25,23 +27,11 @@ public class SellOrder {
 
     private Boolean deliverystatus;
 
-    private Date addTime;
-
-    private Long updateId;
-
-    private Long creatorId;
-
-    private Date updateTime;
-
     private String orderTstatus;
 
-    public Long getId() {
-        return id;
-    }
+    private Long consigneeId;
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public Long getOrderNumber() {
         return orderNumber;
@@ -91,11 +81,11 @@ public class SellOrder {
         this.deliveryMethod = deliveryMethod;
     }
 
-    public Boolean getOrderStatus() {
+    public Long getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(Boolean orderStatus) {
+    public void setOrderStatus(Long orderStatus) {
         this.orderStatus = orderStatus;
     }
 
@@ -123,43 +113,19 @@ public class SellOrder {
         this.deliverystatus = deliverystatus;
     }
 
-    public Date getAddTime() {
-        return addTime;
-    }
-
-    public void setAddTime(Date addTime) {
-        this.addTime = addTime;
-    }
-
-    public Long getUpdateId() {
-        return updateId;
-    }
-
-    public void setUpdateId(Long updateId) {
-        this.updateId = updateId;
-    }
-
-    public Long getCreatorId() {
-        return creatorId;
-    }
-
-    public void setCreatorId(Long creatorId) {
-        this.creatorId = creatorId;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public String getOrderTstatus() {
         return orderTstatus;
     }
 
     public void setOrderTstatus(String orderTstatus) {
         this.orderTstatus = orderTstatus == null ? null : orderTstatus.trim();
+    }
+
+    public Long getConsigneeId() {
+        return consigneeId;
+    }
+
+    public void setConsigneeId(Long consigneeId) {
+        this.consigneeId = consigneeId;
     }
 }

@@ -4,6 +4,7 @@
     <resultMap id="BaseResultMap" type="com.qy25.sm.vo.SellVo">
         <result column="type_name" jdbcType="VARCHAR" property="typeName"/>
         <result column="delivery_name" jdbcType="VARCHAR" property="deliveryName"/>
+        <result column="status_name" jdbcType="VARCHAR" property="statusName"/>
         <association property="sellOrder" javaType="com.qy25.sm.entity.sell.SellOrder">
             <id column="id" jdbcType="BIGINT" property="id"/>
             <result column="order_number" jdbcType="BIGINT" property="orderNumber"/>
@@ -12,7 +13,7 @@
             <result column="business_type" jdbcType="BIGINT" property="businessType"/>
             <result column="payment_method" jdbcType="BIGINT" property="paymentMethod"/>
             <result column="delivery_method" jdbcType="BIGINT" property="deliveryMethod"/>
-            <result column="order_status" jdbcType="BIT" property="orderStatus"/>
+            <result column="order_status" jdbcType="BIGINT" property="orderStatus"/>
             <result column="returned_couse" jdbcType="VARCHAR" property="returnedCouse"/>
             <result column="returned_orders" jdbcType="TINYINT" property="returnedOrders"/>
             <result column="deliveryStatus" jdbcType="BIT" property="deliverystatus"/>
@@ -21,6 +22,7 @@
             <result column="creator_id" jdbcType="BIGINT" property="creatorId"/>
             <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
             <result column="order_tstatus" jdbcType="VARCHAR" property="orderTstatus"/>
+            <result column="consignee_id" jdbcType="BIGINT" property="consigneeId"/>
         </association>
     </resultMap>
     <sql id="Example_Where_Clause">
@@ -89,17 +91,19 @@
     creator_id, update_time, order_tstatus
   </sql>
     <select id="selectByExample" resultMap="BaseResultMap">
-   select a.delivery_name,b.type_name,c.*
-   FROM t_delivery_method a ,t_order_type b,t_sell_order c
+   select a.delivery_name,b.type_name,d.status_name,c.*
+   FROM t_delivery_method a ,t_order_type b,t_sell_order c,t_order_status d
    WHERE a.id=c.delivery_method
    AND b.id=c.order_type
+   AND c.order_status=d.id
   </select>
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-   select a.delivery_name,b.type_name,c.*
-   FROM t_delivery_method a ,t_order_type b,t_sell_order c
+   select a.delivery_name,b.type_name,c.*,d.status_name
+   FROM t_delivery_method a ,t_order_type b,t_sell_order c,t_order_status d
    WHERE c.id=#{id,jdbcType=BIGINT}
    AND a.id=c.delivery_method
    AND b.id=c.order_type
+   AND c.order_status=d.id
   </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from t_sell_order

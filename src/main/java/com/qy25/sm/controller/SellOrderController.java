@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qy25.sm.common.http.AxiosResult;
 import com.qy25.sm.service.sell.SellOrderService;
+import com.qy25.sm.vo.ConsigneeVo;
 import com.qy25.sm.vo.PageVo;
 import com.qy25.sm.vo.SellVo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,5 +25,17 @@ public class SellOrderController {
         PageHelper.startPage(currentPage,pageSize);
         PageVo<SellVo> all = sellOrderService.findAll();
         return AxiosResult.success(all);
+    }
+
+    @GetMapping("{id}")
+    public AxiosResult<SellVo> findById(@PathVariable long id){
+        SellVo byId = sellOrderService.findById(id);
+
+        return AxiosResult.success(byId);
+    }
+
+    @GetMapping("detail")
+    public AxiosResult<ConsigneeVo> findDetailById(long id){
+        return AxiosResult.success(sellOrderService.findDetailById(id));
     }
 }

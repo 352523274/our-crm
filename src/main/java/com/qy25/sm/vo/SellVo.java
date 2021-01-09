@@ -7,5 +7,6 @@ import lombok.Data;
 public class SellVo {
     private String typeName;
     private String deliveryName;
+    private String statusName;
     private SellOrder sellOrder;
 }
