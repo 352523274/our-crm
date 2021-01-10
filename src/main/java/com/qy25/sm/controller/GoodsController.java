@@ -27,9 +27,6 @@ public class GoodsController extends BaseController<Goods,Long> {
     public AxiosResult<PageVo<GoodsVo>> getPageWithExample(@RequestParam(defaultValue = "1") int currentPage,
                                                            @RequestParam(defaultValue = "5") int pageSize,
                                                            @RequestBody GoodsSearchPageDto obj){
-        System.out.println(obj);
-        System.out.println(pageSize);
-
         PageVo<GoodsVo> l= goodsService.getPageWithExample(currentPage,pageSize,obj);
         return AxiosResult.success(l);
     }

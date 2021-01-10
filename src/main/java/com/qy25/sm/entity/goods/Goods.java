@@ -43,4 +43,5 @@ public class Goods extends BaseEntity<Long> {
     private Boolean canPurchase;
 
 
+
 }

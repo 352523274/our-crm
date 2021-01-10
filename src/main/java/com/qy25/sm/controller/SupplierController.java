@@ -44,5 +44,23 @@ public class SupplierController extends BaseController<Supplier,Long> {
 
         return AxiosResult.success(goods);
     }
+    /**
+     * 批量给供应商添加供应商品
+     */
+    @GetMapping("addGoods/{id}/{ids}")
+    public AxiosResult<Void> addGoods(@PathVariable Long id,@PathVariable List<Long> ids){
+       int goods = supplierService.addGoods(id,ids);
+        AxiosResult<Void> axios = getAxios(goods);
+        return axios;
+    }
+    /**
+     * 批量删除供应商品
+     */
+    @DeleteMapping("deletesuppgoodsById/{ids}")
+    public AxiosResult<Void> deletesuppgoodsById(@PathVariable List<Long> ids){
+        int goods = supplierService.deletesuppgoodsById(ids);
+        AxiosResult<Void> axios = getAxios(goods);
+        return axios;
+    }
 
 }

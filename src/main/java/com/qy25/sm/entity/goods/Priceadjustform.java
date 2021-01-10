@@ -34,6 +34,7 @@ public class Priceadjustform extends BaseEntity<Long> {
 
     private Integer aduitStatus;
 
+//额外增加的vo属性
 
 
 }

@@ -50,7 +50,7 @@ public class BaseController<T,ID> {
 
 
 
-    private AxiosResult<Void> getAxios(int row){
+    protected AxiosResult<Void> getAxios(int row){
         if (row>0){
             return AxiosResult.success();
         }

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -66,5 +67,39 @@ public class SupplierServiceImpl extends BaseServiceImpl<Supplier,Long> implemen
     public List<Goods> getAddGoods(Long supplierId) {
         List<Goods> goods= supplierMapper.getAddGoods(supplierId);
         return goods;
+    }
+
+    /**
+     *给此供应商批量添加供应商品
+     */
+    @Override
+    public int addGoods(Long id, List<Long> ids) {
+        Suppliergoods suppliergoods = new Suppliergoods();
+        SuppliergoodsExample suppliergoodsExample = new SuppliergoodsExample();
+        SuppliergoodsExample.Criteria criteria = suppliergoodsExample.createCriteria();
+        criteria.andSupplierIdEqualTo(id);
+        List<Suppliergoods> suppliergoodsed = suppliergoodsMapper.selectByExample(suppliergoodsExample);
+
+        ids.forEach(goodsId->{
+            //遍历数组看看有没有
+            int size = suppliergoodsed.stream().filter(a -> a.getGoodsId().equals(goodsId)).collect(Collectors.toList()).size();
+            if (size==0){
+                //没有就加上
+                suppliergoods.setSupplierId(id);
+                suppliergoods.setGoodsId(goodsId);
+                suppliergoodsMapper.insert(suppliergoods);
+            }
+        });
+        return 1;
+    }
+
+    @Override
+    public int deletesuppgoodsById(List<Long> ids) {
+
+        SuppliergoodsExample suppliergoodsExample = new SuppliergoodsExample();
+        SuppliergoodsExample.Criteria criteria = suppliergoodsExample.createCriteria();
+        criteria.andGoodsIdIn(ids);
+        suppliergoodsMapper.deleteByExample(suppliergoodsExample);
+        return 1;
     }
 }

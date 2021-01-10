@@ -13,4 +13,8 @@ public interface SupplierService extends BaseService<Supplier,Long> {
     PageVo<Supplier> getPageWithExample(SupplierSearchPageDto obj);
 
     List<Goods> getAddGoods(Long supplierId);
+
+    int addGoods(Long id, List<Long> ids);
+
+    int deletesuppgoodsById(List<Long> ids);
 }

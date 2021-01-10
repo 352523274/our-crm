@@ -105,7 +105,8 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qy25.sm.entity.goods.Audit">
+  <insert id="insert" parameterType="com.qy25.sm.entity.goods.Audit" keyProperty="id"
+          keyColumn="id" useGeneratedKeys="true">
     insert into t_audit (id, audit_user_name, audit_date, 
       audit_start_time, audit_result, audit_idea, 
       add_time, creator_id, update_time, 
