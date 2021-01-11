@@ -87,10 +87,28 @@ public class PriceadjustformServiceImpl extends BaseServiceImpl<Priceadjustform,
         //audit  赋值auditUserName   auditDate
         audit.setAuditUserName("写死了");
         audit.setAuditDate(new Date());
-//        auditMapper.i
+        int insert = auditMapper.insert(audit);
+        //将其主键赋值给priceadjustform
+        priceadjustform.setAuditId(audit.getId());
+        //判断审核结果
+        Byte auditResult = audit.getAuditResult();
+        if (auditResult.equals(0)) {
+            //审核未通过
+            priceadjustform.setAduitStatus(0);
+        }else {
+            //审核通过
 
 
-        return 0;
+
+            //口子
+
+
+
+
+            priceadjustform.setAduitStatus(1);
+        }
+        int i = priceadjustformMapper.updateByPrimaryKey(priceadjustform);
+        return i;
     }
 
     /**
